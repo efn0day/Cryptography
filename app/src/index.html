@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Kriptografi Uygulaması</title>
+    <title>Cryptography Application</title>
     <script src="scripts/index.js"></script>
     <script src="https://jsuites.net/v4/jsuites.js"></script>
     <link rel="stylesheet" href="https://jsuites.net/v4/jsuites.css" type="text/css" />
@@ -13,7 +13,7 @@
 
 <body id="window">
     <div class="bar">
-        <div class="title">Kriptografi Uygulaması</div>
+        <div class="title">Cryptography Application</div>
         <div class="nav-buttons">
             <div class="button minimizeButton" id="minimize">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
@@ -32,10 +32,10 @@
         <div id="tabs">
             <div>
                 <div>
-                    <p>Şifrele</p>
+                    <p>Encrypt</p>
                 </div>
                 <div>
-                    <p>Şifre Çöz</p>
+                    <p>Decrypt</p>
                 </div>
             </div>
 
@@ -43,35 +43,35 @@
                 <div>
                     <div class="form">
                         <div class="input">
-                            <div class="label">Şifrelenecek Metin</div>
-                            <textarea id="enc-text" class="text" placeholder="Metin giriniz..."></textarea>
+                            <div class="label">Text to be Encrypted</div>
+                            <textarea id="enc-text" class="text" placeholder="Enter text..."></textarea>
                         </div>
 
                         <div class="form-buttons">
-                            <div id="encryptButton" class="button" onclick="encryptSubmit()">Şifrele</div>
+                            <div id="encryptButton" class="button" onclick="encryptSubmit()">Encrypt</div>
                         </div>
                     </div>
 
                     <div class="result">
-                        <div class="label">Sonuç</div>
-                        <span id="enc-result" class="text">Metin şifrelendiğinde burada gözükecek.</span>
+                        <div class="label">Result</div>
+                        <span id="enc-result" class="text">The encrypted text will appear here.</span>
                     </div>
                 </div>
                 <div>
                     <div class="form">
                         <div class="input">
-                            <div class="label">Şifrelenmiş Metin</div>
-                            <textarea id="dec-text" class="text" placeholder="Metin giriniz..."></textarea>
+                            <div class="label">Encrypted Text</div>
+                            <textarea id="dec-text" class="text" placeholder="Enter text..."></textarea>
                         </div>
 
                         <div class="form-buttons">
-                            <div id="encryptButton" class="button" onclick="decryptSubmit()">Çöz</div>
+                            <div id="encryptButton" class="button" onclick="decryptSubmit()">Decrypt</div>
                         </div>
                     </div>
 
                     <div class="result">
-                        <div class="label">Sonuç</div>
-                        <span id="dec-result" class="text">Şifre çözüldüğünde burada gözükecek.</span>
+                        <div class="label">Result</div>
+                        <span id="dec-result" class="text">The decrypted text will appear here.</span>
                     </div>
                 </div>
             </div>
