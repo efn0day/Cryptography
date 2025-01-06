@@ -1,60 +1,47 @@
-### Görseller
+What is Cryptography?
+Cryptography is a branch of science that addresses issues related to information security. It deals with topics like confidentiality, integrity, and authentication by focusing on the encryption (coding) and decryption (decoding) of messages. This ensures that the transmitted messages can only be understood by the intended recipient and prevents third parties from reading or altering the messages.
 
-Şifrele  |  Şifre Çöz |
-:-------------------------:|:-------------------------:|
-![img](https://github.com/clqu/kriptografi/blob/main/images/image1.jpg) | ![img](https://github.com/clqu/kriptografi/blob/main/images/image2.jpg)
-
-<br /><br /><br />
-
----
-
-<br />
-
-
-# Kriptografi Nedir?
-Kriptografi, bilgi güvenliği konularını ele alan bir bilim dalıdır. Gizlilik, bütünlük ve kimlik doğrulama gibi konuları ele alarak, mesajların şifrelenmesi (kodlama) ve çözülmesi (dekodlama) işlemleriyle ilgilenir. Bu sayede, iletilen mesajların sadece alıcı tarafından anlaşılmasını sağlar ve üçüncü tarafların mesajları okuyup değiştirmesini engeller.
-
-Kriptografi, tarihi oldukça eski zamanlara dayanır. İlk olarak `M.Ö. 4000 yıllarında`, Mısır'da papirüs üzerine yazılan metinlerde kullanılan sembollerle başladığı düşünülmektedir. Günümüzde, kriptografi hala askeri, devlet, bankacılık, e-ticaret ve birçok diğer endüstriyel sektörlerde kullanılmaktadır.
+Cryptography has a long history that dates back to ancient times. It is believed to have started in 4000 B.C., with symbols used on papyrus in Egypt. Today, cryptography is still widely used in military, government, banking, e-commerce, and many other industrial sectors.
 
 <br /><br />
 
-## Şifreleme Yöntemleri
-Şifreleme, verileri okunamaz hale getirmek için kullanılan bir yöntemdir. Bu, verilerin güvenliği için önemlidir. Şifreleme, simetrik ve asimetrik olmak üzere iki temel şekilde gerçekleştirilebilir.
+Encryption Methods
+Encryption is a method used to make data unreadable. It is essential for the security of data. Encryption can be done in two main ways: symmetric and asymmetric.
 
 <br />
+Symmetric Encryption
+Symmetric encryption is a method where the same key is used for both encryption and decryption processes. The security of encrypted data in this method depends directly on the security of the key. If the key is compromised, all the data can be exposed.
 
-### Simetrik Şifreleme
-Simetrik şifreleme, aynı anahtarın hem şifreleme hem de deşifreleme işlemlerinde kullanıldığı bir şifreleme yöntemidir. Bu yöntemde, şifrelenmiş verilerin güvenliği, anahtarın güvenliği ile doğrudan ilişkilidir. Eğer anahtar bir şekilde ele geçirilirse, tüm veriler açığa çıkabilir.
-```js
+js
+Kodu kopyala
 const crypto = require('crypto');
 
 const secretKey = 'mySecretKey';
-const data = 'Merhaba, dünya!';
+const data = 'Hello, world!';
 
 const cipher = crypto.createCipheriv('des-ede3', secretKey, null);
 let encryptedData = cipher.update(data, 'utf8', 'hex');
 encryptedData += cipher.final('hex');
 
-console.log('Şifrelenmiş Veri:', encryptedData);
+console.log('Encrypted Data:', encryptedData);
 
 const decipher = crypto.createDecipheriv('des-ede3', secretKey, null);
 let decryptedData = decipher.update(encryptedData, 'hex', 'utf8');
 decryptedData += decipher.final('utf8');
 
-console.log('Deşifrelenmiş Veri:', decryptedData);
-```
-
+console.log('Decrypted Data:', decryptedData);
 <br />
+Asymmetric Encryption
+Asymmetric encryption, also known as public-key encryption, is a different approach. In this method, two different keys are used: a public key and a private key.
 
-### Asimetrik Şifreleme
-Asimetrik şifreleme, diğer adıyla açık anahtarlı şifreleme, farklı bir şifreleme yaklaşımıdır. Bu yöntemde, iki farklı anahtar kullanılır: açık anahtar ve gizli anahtar.
+The public key can be known by everyone and is used by anyone to encrypt messages. The private key, however, is known only to the recipient and is used to decrypt the messages.
 
-Açık anahtar, herkes tarafından bilinebilir ve iletişimdeki herkes tarafından kullanılabilir. Bu anahtar, mesajların şifrelenmesinde kullanılır. Gizli anahtar ise, sadece mesajların alıcısı tarafından bilinir ve mesajın şifresinin çözülmesinde kullanılır.
+Asymmetric encryption uses mathematical operations for encrypting and decrypting messages. These operations usually involve large numbers, and the encryption and decryption processes can be relatively slow. However, this method is more secure and is commonly used for processes like mutual authentication.
 
-Asimetrik şifreleme, mesajın şifrelenmesi ve çözülmesi işlemlerinde matematiksel işlemler kullanır. Bu işlemler, genellikle büyük sayılarla çalışır ve mesajın şifrelenmesi ve çözülmesi işlemleri oldukça yavaş olabilir. Ancak, bu yöntem, özellikle güvenlik açısından daha güçlü bir yöntemdir ve çift taraflı kimlik doğrulama gibi işlemleri gerçekleştirmek için de kullanılabilir.
+The most common application of asymmetric encryption is in protocols like SSL (Secure Sockets Layer) and TLS (Transport Layer Security), which ensure secure information exchange over the internet.
 
-Asimetrik şifreleme yönteminin en yaygın kullanılan uygulaması, `SSL (Secure Sockets Layer)` ve `TLS (Transport Layer Security)` protokolleridir. Bu protokoller, internet üzerinde güvenli bir şekilde bilgi alışverişi yapmak için kullanılır.
-```js
+js
+Kodu kopyala
 const crypto = require('crypto');
 
 crypto.generateKeyPair('rsa', {
@@ -82,39 +69,36 @@ crypto.generateKeyPair('rsa', {
 
     console.log(decryptedMessage.toString());
 });
-```
-
 <br /><br />
 
-## Karmaşık Şifreleme Yöntemleri
-Karmaşık şifreleme yöntemleri, diğer şifreleme yöntemlerine kıyasla daha güçlüdür ve daha yüksek seviyede güvenlik sağlarlar. Bu yöntemler, genellikle karmaşık matematiksel işlemler ve algoritmalar kullanırlar.
+Advanced Encryption Methods
+Advanced encryption methods are more robust and provide a higher level of security than basic methods. These methods often use complex mathematical operations and algorithms.
 
-Bazı karmaşık şifreleme yöntemleri arasında `AES (Advanced Encryption Standard)`, `Blowfish`, `Twofish`, `Serpent` ve `Camellia` gibi yöntemler yer alır.
-
-<br />
-
-### Blok Şifreleme
-Blok şifreleme, mesajın bölümlere ayrılması ve her bir bölümün ayrı ayrı şifrelenmesiyle gerçekleştirilir. Bu yöntemde, mesajın bölümlerinin boyutu belirlenir ve şifreleme işlemi blok boyutları üzerinde gerçekleştirilir. Örneğin, AES şifreleme yöntemi, 128 bit blokları şifreler.
-
-Blok şifreleme yönteminin güvenliği, kullanılan şifreleme algoritmasının güvenliği ve blok boyutu gibi faktörlere bağlıdır. Blok boyutu ne kadar büyükse, güvenlik seviyesi o kadar yüksek olur. Ancak, blok boyutu arttıkça işlem zamanı da artar.
+Some of the advanced encryption methods include AES (Advanced Encryption Standard), Blowfish, Twofish, Serpent, and Camellia.
 
 <br />
+Block Cipher
+Block cipher is performed by dividing a message into segments and encrypting each segment separately. In this method, the size of the message blocks is defined, and encryption is applied to the block sizes. For instance, the AES encryption method encrypts 128-bit blocks.
 
-### Akış Şifreleme
-Akış şifreleme, mesajın bölünmesi yerine bitlerin ayrı ayrı şifrelenmesiyle gerçekleştirilir. Bu yöntemde, şifreleme anahtarı bit bit kullanılır ve şifreleme işlemi, her bir bitin şifrelenmesiyle gerçekleştirilir.
-
-Akış şifreleme yönteminde, mesajın uzunluğu ne olursa olsun, şifreleme işlemi aynı hızda gerçekleşir. Ancak, anahtar yönetimi daha karmaşıktır ve güvenliği, kullanılan şifreleme algoritmasının güvenliği ve anahtar yönetimi gibi faktörlere bağlıdır.
+The security of block cipher methods depends on factors like the encryption algorithm used and the block size. The larger the block size, the higher the security level. However, larger block sizes increase the processing time.
 
 <br />
+Stream Cipher
+Stream cipher encrypts individual bits instead of dividing the message into segments. In this method, the encryption key is applied bit by bit, and the encryption process is completed by encrypting each bit.
 
-### Karma Fonksiyonlar
-Karma fonksiyonları, verilen mesajdan sabit boyutlu bir çıktı üretirler. Bu çıktı, bir parmak izi olarak kullanılabilir ve mesajın bütünlüğünün korunmasında önemli bir rol oynar.
+Stream cipher methods allow the encryption process to proceed at the same speed, regardless of the message length. However, key management is more complex, and the security depends on the encryption algorithm and key management.
 
-Karma fonksiyonlarının en önemli özelliği, mesajın değiştirilmesi durumunda, çıktıda büyük bir farklılık oluşmasıdır. Bu nedenle, karma fonksiyonları, mesajın bütünlüğünün doğrulanması, mesajın kimliğinin doğrulanması ve şifreleme anahtarlarının oluşturulması gibi alanlarda yaygın olarak kullanılır.
+<br />
+Hash Functions
+Hash functions generate a fixed-size output from a given message. This output can serve as a fingerprint and plays a vital role in maintaining the integrity of the message.
 
-Örnek olarak, `SHA-3` ve `SHA-256` gibi karma fonksiyonları, verilen mesajlardan sabit boyutlu çıktılar üretirler.
-```js
-const crypto require('crypto');
+The most significant feature of hash functions is that even the slightest change in the message results in a substantial difference in the output. Therefore, hash functions are widely used in verifying message integrity, authenticating messages, and generating encryption keys.
+
+For example, SHA-3 and SHA-256 hash functions generate fixed-size outputs from given messages.
+
+js
+Kodu kopyala
+const crypto = require('crypto');
 
 const message = 'Hello World!';
 
@@ -124,55 +108,46 @@ hash.update(message);
 const hash_hex = hash.digest('hex');
 
 console.log(hash_hex);
-```
-Yukarıdaki örnekte, "Hello World!" mesajı SHA-256 algoritması kullanılarak karma fonksiyonuna verilir ve çıktısı hesaplanır. Çıktı, hex formatında `c3b...b7` olarak verilir.
+In the example above, the "Hello World!" message is passed through a hash function using the SHA-256 algorithm, and the output is calculated. The output, in hex format, is displayed as c3b...b7.
 
 <br /><br />
 
-## Javascript ile Basit Kriptografi
-Javascript, web tabanlı uygulamaların geliştirilmesi için kullanılan bir programlama dilidir. Javascript ile basit şifreleme işlemleri yapılabilir. Örneğin, bir metnin şifrelenmesi için, metin ve anahtar kelime girdisi alanı olan bir web formu oluşturulabilir. Formda yer alan "Metni Şifrele" ve "Metni Çöz" düğmeleri ile de kullanıcının verileri işlenebilir. Ancak, gerçek hayatta kullanılan güvenli kriptografi yöntemleri için, özel kütüphanelerin kullanılması önerilir.
+Simple Cryptography with JavaScript
+JavaScript, a programming language used for developing web-based applications, can be used to perform simple encryption operations. For instance, a web form with input fields for a text and a keyword can be created. The form can also have "Encrypt Text" and "Decrypt Text" buttons to process the user's data. However, for real-world secure cryptography, specialized libraries are recommended.
 
-Javascript ile basit bir şifreleme örneği yapmak için, aşağıdaki adımlar izlenebilir:
+To create a simple encryption example with JavaScript, follow these steps:
 
-- Kullanıcının girdiği metin ve anahtar kelime, prompt() fonksiyonu ile alınır.
-- Metin ve anahtar kelime, her harf için ASCII kodlarına dönüştürülür.
-- Her harf için, metin ve anahtar kelime ASCII kodları toplanır ve sonuç yeni bir ASCII kod olarak elde edilir.
-- Yeni ASCII kodu, String.fromCharCode() fonksiyonu ile karaktere dönüştürülür ve şifrelenmiş metin oluşur.
-- Şifrelenmiş metin, alert() fonksiyonu ile kullanıcıya gösterilir.
-- Şifrelenmiş metin çözülmek istendiğinde, aynı işlem tersine çevrilerek orijinal metin elde edilir.
-
-Bu basit örnekte kullanılan yöntem, güvenli bir kriptografi yöntemi değildir. Sadece, kriptografi kavramını anlamak ve basit şifreleme işlemleri yapmak için kullanılabilir.
-
-<br />
-
----
+Use prompt() to get the text and keyword input from the user.
+Convert both the text and keyword to their ASCII codes for each character.
+For each character, add the ASCII codes of the text and keyword, and the result becomes the new ASCII code.
+Convert the new ASCII code to a character using String.fromCharCode() to form the encrypted text.
+Display the encrypted text using alert().
+To decrypt the encrypted text, reverse the same process to get the original text.
+This basic method is not a secure cryptography technique. It is only intended to demonstrate the concept and perform simple encryption operations.
 
 <br />
-
-# Bu Projedeki Kriptografi
-Bu projedeki yöntem, bir metin veya şifreli metin verildiğinde, metnin karakterlerini belirli sayısal değerlere dönüştürerek şifrelemeyi ve aynı işlemi tersine çevirerek metni şifreden çözmeyi sağlar.
+<br />
+Cryptography in This Project
+The method in this project allows encryption of a given text or encrypted text by converting the text characters into specific numerical values. Similarly, the reverse process decrypts the text to retrieve the original message.
 
 <br />
+Encryption Method
+The encryption process involves mapping each character to a specific numerical value based on its alphabetical position. These mappings are stored in an array. Each array element contains a character and its corresponding numerical value.
 
-## Şifreleme Yöntemi
-Şifreleme işlemi, her karakterin alfabetik pozisyonunu belirli bir sayısal değerle eşleştirerek gerçekleştirilir. Bu eşleştirmeler bir dizi içinde saklanır. Dizi öğeleri, bir karakter ve onun eşleştiği sayısal değeri içerir.
+For example, the character 'A' is mapped to the numerical value 0, 'B' to 1, and so on.
 
-Örneğin, 'A' karakteri, 0 sayısal değeriyle eşleştirilirken, 'B' karakteri 1 sayısal değeriyle eşleştirilir ve böylece devam eder.
+During encryption, the characters of the text are converted into numerical values based on these mappings, resulting in an array of numerical values. These numbers are then combined in hexadecimal format and separated by a dash (-).
 
-Şifreleme işlemi sırasında, metnin karakterleri bu eşleştirmelere göre sayısal değerlere dönüştürülür ve sonuç olarak bir dizi sayısal değerler elde edilir. Bu sayılar daha sonra onaltılık formatında birleştirilir ve aralarına bir kısa çizgi (-) konulur.
-
-Örneğin, "HELLO" metni şifrelendiğinde, sonuç "9-37-46-46-50" olacaktır.
-
-<br />
-
-## Şifre Çözme Yöntemi
-Şifre çözme işlemi, şifrelenmiş metnin sayısal değerlerini alır ve bunları dizi eşleştirmelerindeki karakterlere dönüştürür. Sayılar, onaltılık formatında birleştirilmiş bir dize içinde saklanır ve dize "-" karakteriyle ayrılmıştır.
-
-Her sayı, eşleştirmelerdeki bir karakterle eşleştirilir ve sonuç olarak metnin karakterleri elde edilir. Bu karakterler birleştirilir ve orijinal metin elde edilir.
-
-Örneğin, "9-37-46-46-50" şifreli metni çözüldüğünde, sonuç "HELLO" olacaktır.
+For instance, encrypting "HELLO" would result in "9-37-46-46-50".
 
 <br />
+Decryption Method
+The decryption process takes the numerical values from the encrypted text and maps them back to characters based on the mappings in the array. The numbers are stored in a string in hexadecimal format and separated by the "-" character.
 
-## Kullanım
-Bu yöntem, basit bir şifreleme yöntemi olarak kullanılabilir. Ancak, özellikle hassas veriler için güvenli bir yöntem olarak yeterli değildir. Çünkü bu şifreleme yöntemi, her karakterin eşleştirildiği sabit bir sayısal değer kullanır ve şifrelenmiş metnin yapısı açıkça görülebilir. Bu nedenle, daha güvenli şifreleme yöntemleri kullanmak önemlidir.
+Each number corresponds to a character in the mappings, and the result is the characters of the text. These characters are combined to retrieve the original message.
+
+For example, decrypting "9-37-46-46-50" would result in "HELLO".
+
+<br />
+Usage
+This method can be used as a simple encryption technique. However, it is not sufficient as a secure method, especially for sensitive data. This is because the method uses a fixed numerical value for each character mapping, and the structure of the encrypted text is clearly visible. Therefore, it is important to use more secure encryption methods.
